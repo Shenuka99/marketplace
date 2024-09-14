@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import {client} from '../config/kindeClientConfig'
+import { handleLogout } from "../config/kindeClientConfig";
 
 
 
@@ -40,13 +41,6 @@ export default function App() {
       // User was authenticated
       router.push('/home')
     } 
-  };
-
-  const handleLogout = async () => {
-    const loggedOut = await client.logout();
-    if (loggedOut) {
-      console.log('logged out')
-    }
   };
 
 

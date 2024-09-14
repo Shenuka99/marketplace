@@ -1,21 +1,11 @@
 import { View, Text, Image, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { KindeSDK } from '@kinde-oss/react-native-sdk-0-7x'
 import Ionicons from '@expo/vector-icons/Ionicons'; 
 import { client } from '@/config/kindeClientConfig';
+import { UserProfile } from '@/constants/Interfaces';
 
 export default function Header() {
 
-  interface UserProfile {
-    email: string;
-    family_name: string;
-    given_name: string;
-    id: string;
-    picture: string;
-  }
-  
-
- 
   const [userData, setUserData] = useState<UserProfile | null>(null);
 
   const getUserData = async () => {
@@ -34,9 +24,6 @@ export default function Header() {
     getUserData()
   }, [])
   
-
-
-
   return (
 
     <View>

@@ -4,7 +4,7 @@ export interface Product {
     price: number;
     category: string;
     description: string;
-    image: string; // Adjusted to match the array structure
+    image: string; 
   }
 
   export interface Category {
@@ -13,4 +13,12 @@ export interface Product {
     image: string;
     creationAt: string;
     updatedAt: string;
+  }
+
+  export interface UserProfile {
+    email: string;
+    family_name: string;
+    given_name: string;
+    id: string;
+    picture: string;
   }

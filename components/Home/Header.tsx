@@ -2,6 +2,7 @@ import { View, Text, Image, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { KindeSDK } from '@kinde-oss/react-native-sdk-0-7x'
 import Ionicons from '@expo/vector-icons/Ionicons'; 
+import { client } from '@/config/kindeClientConfig';
 
 export default function Header() {
 
@@ -14,18 +15,7 @@ export default function Header() {
   }
   
 
-  const KINDE_ISSUER_URL='https://shenuka.kinde.com'
-const KINDE_POST_CALLBACK_URL='exp://192.168.72.211:8081'
-const KINDE_POST_LOGOUT_REDIRECT_URL='exp://192.168.72.211:8081'
-const KINDE_CLIENT_ID='f1a1a415f3b349ba9befeeb7b71dc63b'
-
-  const YOUR_KINDE_ISSUER  = KINDE_ISSUER_URL 
-  const YOUR_KINDE_REDIRECT_URI = KINDE_POST_CALLBACK_URL
-  const YOUR_KINDE_CLIENT_ID = KINDE_CLIENT_ID
-  const YOUR_KINDE_LOGOUT_REDIRECT_URI = KINDE_POST_LOGOUT_REDIRECT_URL 
-
-  const client = new KindeSDK(YOUR_KINDE_ISSUER, YOUR_KINDE_REDIRECT_URI, YOUR_KINDE_CLIENT_ID, YOUR_KINDE_LOGOUT_REDIRECT_URI);
-
+ 
   const [userData, setUserData] = useState<UserProfile | null>(null);
 
   const getUserData = async () => {
@@ -33,7 +23,7 @@ const KINDE_CLIENT_ID='f1a1a415f3b349ba9befeeb7b71dc63b'
     try {
       const userProfile = await client.getUserDetails();
       setUserData(userProfile)
-      console.log(userProfile);
+      // console.log(userProfile);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }

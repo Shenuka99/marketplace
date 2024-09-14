@@ -1,16 +1,14 @@
+import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Category } from '@/constants/Interfaces';
 
-interface Category {
-  id: number;
-  name: string;
-  image: string;
-  creationAt: string;
-  updatedAt: string;
-}
+
+
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const router = useRouter()
 
   const getCategoryList = async () => {
     try {
@@ -23,6 +21,11 @@ const Categories: React.FC = () => {
     }
   };
 
+  const onPress = (item : Category) =>  {
+    router.push('/itemList')
+    router.setParams({category: item.name})
+  }
+
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -31,7 +34,9 @@ const Categories: React.FC = () => {
     if (index > 6) return null;
 
     return (
-      <TouchableOpacity className='flex-1 items-center justify-center p-2 border-[1px] border-blue-300 m-1 h-[80px] rounded-lg bg-blue-50'>
+      <TouchableOpacity 
+      onPress={() => onPress(item)}
+      className='flex-1 items-center justify-center p-2 border-[1px] border-blue-300 m-1 h-[80px] rounded-lg bg-blue-50'>
         <Image source={{ uri: item.image }} className='w-[40px] h-[40px]' />
         <Text className='text-[12px] mt-1'>{item.name}</Text>
       </TouchableOpacity>
@@ -47,6 +52,7 @@ const Categories: React.FC = () => {
         numColumns={4}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
+        scrollEnabled={false}
       />
     </View>
   );

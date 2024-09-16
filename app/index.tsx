@@ -21,9 +21,9 @@ export default function App() {
     }
   };
   
-  useEffect(() => {
-    checkAuthenticate();
-  }, []);
+  // useEffect(() => {
+  //   checkAuthenticate();
+  // }, []);
 
   const handleSignUp = async () => {
     const token = await client.register();
